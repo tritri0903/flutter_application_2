@@ -11,9 +11,8 @@ class AppViewModel extends ChangeNotifier {
   Color clrLv3 = Colors.grey.shade800;
   Color clrLv4 = Colors.grey.shade900;
 
-  TextStyle taskStyle = TextStyle(color: Colors.grey.shade800,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500);
+  TextStyle taskStyle = TextStyle(
+      color: Colors.grey.shade800, fontSize: 17, fontWeight: FontWeight.w500);
 
   int get numTask => tasks.length;
 
@@ -24,72 +23,72 @@ class AppViewModel extends ChangeNotifier {
   int repNum = 10;
   int serNum = 3;
 
-  void setRepValue(bool i){
-    if(i){
+  void setRepValue(bool i) {
+    if (i) {
       repNum++;
-    }
-    else{
+    } else {
       repNum--;
     }
-    if(repNum <= 0){
+    if (repNum <= 0) {
       repNum = 1;
     }
-    if(repNum >= 100){
+    if (repNum >= 100) {
       repNum = 100;
     }
     notifyListeners();
   }
 
-  void addTask(Task newTask){
+  void addTask(Task newTask) {
     tasks.add(newTask);
     notifyListeners();
   }
 
-  bool getTaskValue(int taskIndex){
+  bool getTaskValue(int taskIndex) {
     return tasks[taskIndex].complete;
   }
 
-  String getTaskTitle(int taskIndex){
+  String getTaskTitle(int taskIndex) {
     return tasks[taskIndex].title;
   }
 
-  int getTaskRep(int taskIndex){
+  int getTaskRep(int taskIndex) {
     return tasks[taskIndex].rep;
   }
 
-  int getTaskSer(int taskIndex){
+  int getTaskSer(int taskIndex) {
     return tasks[taskIndex].ser;
   }
 
-  void deleteTask(int taskIndex){
+  void deleteTask(int taskIndex) {
     tasks.removeAt(taskIndex);
     notifyListeners();
   }
 
-  void setTaskValue(int taskIndex, bool taskValue){
+  void setTaskValue(int taskIndex, bool taskValue) {
     tasks[taskIndex].complete = taskValue;
     notifyListeners();
   }
 
-  void updateUsername(String newUsername){
+  void updateUsername(String newUsername) {
     user.username = newUsername;
     notifyListeners();
   }
 
-  void deleteAllTasks(){
+  void deleteAllTasks() {
     tasks.clear();
     notifyListeners();
   }
 
-  void deleteCompetedTasks(){
+  void deleteCompetedTasks() {
     tasks = tasks.where((task) => !task.complete).toList();
     notifyListeners();
   }
 
   void bottomSheetBuilder(Widget bottomSheetView, BuildContext context) {
     showModalBottomSheet(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         context: (context),
         builder: ((context) {
           return bottomSheetView;
